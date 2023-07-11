@@ -5,11 +5,14 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 
 {
+   
+
+
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    { 
+
     }
 
     // Update is called once per frame
@@ -29,18 +32,10 @@ public class Coin : MonoBehaviour
 
             GameManager.instance.AddScore(10);
             gameObject.SetActive(false);
+
+            Audio audio = FindObjectOfType<Audio>();
+            audio.CoinSound();
+
         }
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.tag.Equals("Player"))
-    //    {
-    //        Debug.Log("코인을 먹었나?");
-
-    //        GameManager.instance.AddScore(10);
-    //        gameObject.SetActive(false);
-
-    //    }
-    //}
 }

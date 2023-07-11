@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
 
     public bool isGameOver = false;
     public TMP_Text scoreText;  // Text mesh pro 컴포넌트
+    public TMP_Text bestscoreText;  // Text mesh pro 컴포넌트
     public Text scoreText_; // Legacy Text 컴포넌트
     public GameObject gameOverUi;
 
     private int score = 0;
+    private int bestscore = 0;
 
     private void Awake()
     {
@@ -38,13 +40,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        bestscore = PlayerPrefs.GetInt("BestScore");
+        bestscoreText.text = string.Format("Best Score : {0}", bestscore);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isGameOver == true && Input.GetMouseButtonDown(0))
+        if (isGameOver == true && Input.GetMouseButtonDown(0) || isGameOver == true && Input.GetKeyDown(KeyCode.Space))
         {
             //GlobalFunc.LoadScene("PlayerScene");
             GlobalFunc.LoadScene(GlobalFunc.GetActiveSceneName());
@@ -66,5 +69,15 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         gameOverUi.SetActive(true);
+
+        bestscore = PlayerPrefs.GetInt("BestScore");
+
+        if (bestscore < score)
+        {
+            //점수 증가
+            bestscore = score;
+            PlayerPrefs.SetInt("BestScore", bestscore);
+            bestscoreText.text = string.Format("Best Score : {0}", bestscore);
+        }
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 060f84b04708d454fa2afdbeb919d109
+guid: 83e40daf4e9358d44879ac01f19f436f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,22 +141,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mario_Big_jump
+      name: Noconoco_0
       rect:
         serializedVersion: 2
         x: 128
-        y: 323
+        y: 167
         width: 16
-        height: 30
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bda39f1b7589a8647a1809071a365a34
-      internalID: -247132062
+      spriteID: d816202a9a51e784fa4ad40f3ddba2f6
+      internalID: -188024656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Noconoco_1
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 166
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0161019c3162df94eba0ee8bb401455f
+      internalID: -1714314034
       vertices: []
       indices: 
       edges: []
@@ -180,6 +201,8 @@ TextureImporter:
       Mario_Small_2: -2145817430
       Mario_Small_3: -1225205532
       Mario_Small_4: -624257586
+      Noconoco_0: -188024656
+      Noconoco_1: -1714314034
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
