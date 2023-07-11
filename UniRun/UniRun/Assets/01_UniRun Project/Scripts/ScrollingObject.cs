@@ -15,6 +15,10 @@ public class ScrollingObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        // 게임매니저의 isGameOver가 false인 경우에만 살아있도록 하겠다.
+        if (GameManager.instance.isGameOver == false)
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
     }
 }

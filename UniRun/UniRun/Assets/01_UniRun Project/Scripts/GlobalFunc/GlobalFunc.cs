@@ -16,6 +16,16 @@ public static partial class GlobalFunc
     }
 
     [System.Diagnostics.Conditional("DEBUG_MODE")]
+    //래핑한 모습.
+    public static void LogWarning(object message)
+    {
+#if DEBUG_MODE
+        Debug.LogWarning(message);
+#endif
+    }
+
+
+    [System.Diagnostics.Conditional("DEBUG_MODE")]
     public static void Assert(bool condition)
     {
 
@@ -42,6 +52,12 @@ public static partial class GlobalFunc
 
     }
 
+    //! 현재 씬의 이름을 리턴한다.
+    public static string GetActiveSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
     // 두 벡터를 더한다.
     public static Vector2 AddVector(this Vector3 origin, Vector2 addVector)
     {
@@ -49,5 +65,22 @@ public static partial class GlobalFunc
         result += addVector;
         return result;
     }
+
+    //! 컴포넌트가 존재하는지 여부를 체크하는 함수
+    public static bool IsValid<T>(this T target) where T : Component
+    {
+        if (target == null || target == default) { return false; }
+        else { return true; }
+    }
+
+    //! 리스트가 유효한지 여부를 체크하는 함수
+    //public static bool IsValid<T>(this List<T> target) 
+    //{
+    //    bool isInvalid = (target == null || target == default);
+    //    isInvalid = isInvalid || target.Count == 0;
+
+    //    if (target == null || target == default) { return false; }
+    //    else { return true; }
+    //}
 
 }
