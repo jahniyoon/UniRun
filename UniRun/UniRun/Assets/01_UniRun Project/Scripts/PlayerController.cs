@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         playerRigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         colider = GetComponent<BoxCollider2D>();
@@ -36,18 +36,45 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDead == false)
-        { 
-        float xInput = Input.GetAxis("Horizontal");
-  
-        float xSpeed = xInput * speed;
-        Vector2 newVelocity = new Vector2(xSpeed, playerRigid.velocity.y);
-        playerRigid.velocity = newVelocity;
+        if (isDead == false)
+        {
+            float xInput = Input.GetAxis("Horizontal");
+
+            float xSpeed = xInput * speed;
+            Vector2 newVelocity = new Vector2(xSpeed, playerRigid.velocity.y);
+            playerRigid.velocity = newVelocity;
         }
 
         if (isDead) { return; }
 
-        if (Input.GetMouseButtonDown(0) && jumpCount < 3 || Input.GetKeyDown(KeyCode.Space) && jumpCount < 3)       // 점프가 한번만 가능하도록
+        //Jump();
+
+        // LEGACY :
+        //if (Input.GetMouseButtonDown(0) && jumpCount < 3 || Input.GetKeyDown(KeyCode.Space) && jumpCount < 3)       // 점프가 한번만 가능하도록
+        //{
+        //    Debug.Log("점프하나?");
+
+        //    jumpCount += 1;
+        //    playerRigid.velocity = Vector2.zero;
+        //    playerRigid.AddForce(new Vector2(0, jumpForce));
+
+
+        //    Audio audio = FindObjectOfType<Audio>();
+        //    audio.JumpSound();
+
+        //}
+
+        //else if (Input.GetMouseButtonDown(0) && 0 < playerRigid.velocity.y || Input.GetKeyDown(KeyCode.Space) && 0 < playerRigid.velocity.y) //  2단점프 제약주는 로직
+        //{
+        //    playerRigid.velocity = playerRigid.velocity * 0.5f;
+        //}
+
+        animator.SetBool("Grounded", isGrounded); //Ground 는 꼭 복사 붙여넣기로 하는 습관 하기.
+    }
+
+    public void Jump()
+    {
+        if (jumpCount < 3)       // 점프가 한번만 가능하도록
         {
             Debug.Log("점프하나?");
 
@@ -60,13 +87,12 @@ public class PlayerController : MonoBehaviour
             audio.JumpSound();
 
         }
+        //else if (0 < playerRigid.velocity.y) //  2단점프 제약주는 로직
+        //{
+        //    playerRigid.velocity = playerRigid.velocity * 0.5f;
+        //}
 
-        else if (Input.GetMouseButtonDown(0) && 0 < playerRigid.velocity.y || Input.GetKeyDown(KeyCode.Space) && 0 < playerRigid.velocity.y) //  2단점프 제약주는 로직
-        {
-            playerRigid.velocity = playerRigid.velocity * 0.5f;
-        }
 
-        animator.SetBool("Grounded", isGrounded); //Ground 는 꼭 복사 붙여넣기로 하는 습관 하기.
     }
 
     private void Die()
